@@ -1,0 +1,12 @@
+# data
+*.csv
+
+# model
+*.pt
+
+# python
+__pycache__/
+*.pyc
+
+# env
+.env
