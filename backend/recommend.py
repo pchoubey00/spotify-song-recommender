@@ -70,7 +70,7 @@ with torch.no_grad():
     song_embeddings = model.encoder(X_tensor).numpy()
 
 
-def recommend_songs(song_name, top_k=10):
+def recommend_songs(song_name, top_k=10, return_results=False):
     matches = df[df["track_name"].str.lower() == song_name.lower()]
 
     if matches.empty:
@@ -90,11 +90,12 @@ def recommend_songs(song_name, top_k=10):
     results = df.iloc[similar_indices][
         ["track_name", "artists", "track_genre", "popularity", "danceability", "energy", "valence"]
     ]
-
+    if return_results:
+        return results.to_dict(orient="records")
     print(results.to_string(index=False))
 
 
-def recommend_by_mood(query, top_k=10):
+def recommend_by_mood(query, top_k=10, return_results=False):
     query = query.lower()
 
     mood_profile = {
@@ -167,21 +168,24 @@ def recommend_by_mood(query, top_k=10):
     results = df.iloc[similar_indices][
         ["track_name", "artists", "track_genre", "popularity", "danceability", "energy", "valence", "acousticness", "tempo"]
     ]
+    if return_results:
+        return results.to_dict(orient="records")
+
 
     print(results.to_string(index=False))
 # Try it
-while True:
-    user_input = input("\nEnter a song name or mood query, or type 'quit' to exit: ")
+#while True:
+    #user_input = input("\nEnter a song name or mood query, or type 'quit' to exit: ")
 
-    if user_input.lower() == "quit":
-        print("Goodbye!")
-        break
+    #if user_input.lower() == "quit":
+    #    print("Goodbye!")
+    #    break
 
-    mode = input("Search by song or mood? Type 'song' or 'mood': ").lower()
+    #mode = input("Search by song or mood? Type 'song' or 'mood': ").lower()
 
-    if mode == "song":
-        recommend_songs(user_input, top_k=10)
-    elif mode == "mood":
-        recommend_by_mood(user_input, top_k=10)
-    else:
-        print("Please type either 'song' or 'mood'.")
+    #if mode == "song":
+    #    recommend_songs(user_input, top_k=10)
+    #elif mode == "mood":
+    #    recommend_by_mood(user_input, top_k=10)
+    #else:
+    #    print("Please type either 'song' or 'mood'.")

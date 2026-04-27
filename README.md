@@ -1,39 +1,54 @@
-# Spotify Song Recommender using PyTorch
+# Spotify Song Recommender (PyTorch + React)
 
-This project builds a content-based music recommender using PyTorch.
+Full-stack music recommender system using PyTorch for embeddings and React for UI.
 
 ## Features
-- Learns song embeddings using an autoencoder
-- Recommends similar songs using cosine similarity
-- Supports:
-  - Song-based queries
-  - Mood-based queries (e.g., "sad", "high energy", "chill acoustic")
+
+- Song-based recommendations
+- Mood-based recommendations ("sad", "high energy", "chill acoustic")
+- Learned embeddings using PyTorch autoencoder
+- FastAPI backend
+- React frontend
 
 ## Tech Stack
+
+Backend:
 - Python
 - PyTorch
-- pandas, scikit-learn
-- NumPy
+- FastAPI
+- scikit-learn
+
+Frontend:
+- React (Vite)
+- JavaScript
 
 ## How it works
-1. Spotify dataset(from here: https://www.kaggle.com/datasets/yashdev01/spotify-tracks-dataset/code) is preprocessed (audio + metadata features).
-2. Autoencoder learns compressed song embeddings. 
-3. Similar songs are retrieved using cosine similarity in embedding space. 
 
-## Run locally
-Train model:
-bash
-python spotify_recommender.py
+1. Spotify dataset is preprocessed (audio + metadata features)
+2. Autoencoder learns 32-dimensional song embeddings
+3. Recommendations are generated using cosine similarity
 
-Run recommender:
-bash
-python recommend.py
+## Run locally(separate terminals for frontend and backend)
 
-## Example Queries
-song → You belong with me
-mood → sad
-mood → high energy
-mood → chill acoustic
+### backend from terminal
+cd backend
+pip install -r ../requirements.txt
+uvicorn app:app --reload
 
-## Notes
-Dataset not included due to size.
+### frontend from terminal
+cd frontend
+npm install
+npm run dev
+
+### Open from browser
+http://localhost:5173
+
+### Example Queries
+
+- Song: Comedy
+- Mood: sad
+- Mood: high energy
+- Mood: chill acoustic
+
+
+
