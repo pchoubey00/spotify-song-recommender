@@ -31,14 +31,14 @@ Frontend:
 ## Run locally(separate terminals for frontend and backend)
 
 ### backend from terminal
-cd backend
-pip install -r ../requirements.txt
-uvicorn app:app --reload
+- cd backend
+- pip install -r ../requirements.txt
+- uvicorn app:app --reload
 
 ### frontend from terminal
-cd frontend
-npm install
-npm run dev
+- cd frontend
+- npm install
+- npm run dev
 
 ### Open from browser
 http://localhost:5173
